@@ -1,0 +1,9 @@
+id,name,type,damage,cost
+1,fireball,fire,10,5
+2,waterball,water,10,5
+3,earthball,earth,10,5
+4,airball,air,10,5
+5,firepunch,fire,10,0
+6,waterpunch,water,10,0
+7,earthpunch,earth,10,0
+8,airpunch,air,10,0

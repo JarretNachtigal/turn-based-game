@@ -21,6 +21,7 @@ class Character:
     #     self.hp = hp
 
 # this class represents a human or AI player - not a character in game
+# if the game takes a more PvE route, human and AI players will need to be abstracted somehow
 class Player:
 
     def __init__(self, player_id, player_name) -> None:
@@ -28,68 +29,82 @@ class Player:
         self.player_name = player_name
 
 
+# instances of this class represents a move that a character can learn and use
+class CharacterAbility:
+
+    def __init__(self, id, name, type, damage, cost) -> None:
+        self.id = id
+        self.name = name
+        self.damage = damage
+        self.cost = cost
+
+
 def main():
 
     # player data is filled before game loop begins
     # passed into game_loop as paramaters
-    
-    player_1, player_2 = read_players(1, 2)
+    # characters = [] # will hold instantiated characters at the highest scope MAYBE?
+    # character_abilities = [] # will hold instantiated character abilities at the highest scope MAYBE?
+    players = read_players(1, 2)
     character_1, character_2 = read_characters(1, 2)
-    player_1.character = character_1
-    player_2.character = character_2
+    players[1].character = character_1
+    players[1].character = character_2
     # this setup method will get all the objects for the game ready MAYBE?
     # setup()
     # game loop call
-    game_loop(player_1, player_2)
+    game_loop(players)
 
 
 # this method handles the player data and controlling turns and continues until the game is over
-def game_loop(player_1, player_2):
-    # while not game_end:
-    #     turn(player_1, player_2)
-    #     if player_1.character.hp <= 0 or player_2.character.hp <= 0:
-    #         game_end = True
-    #     turn(player_2, player_1)
-    #     print(player_1.character.hp, " ", player_2.character.hp)
-    #     if player_1.character.hp <= 0 or player_2.character.hp <= 0:
-    #         game_end = True
-    while(turn(player_1, player_2)):
+def game_loop(players):
+    # overworld stuff? or maybe this game loop is only for combat sections
+
+    # will continue combat until 0 is input to exit
+    while(turn(players[1], players[2])):
         pass
 
     
-
 # this method is passed the players? characters? each turn (1 player goes, not both) and handles everything for each turn
 def turn(player_1, player_2):
     # note: --print a nice command line prompt
     # note: --later implement a little vm to read a string describing an attack and its effects
     # this way attacks can be defined as data and be customized for anything
-    # note: --add robust menu options for the player
+    # note: --add robust menu options for the player - including a display of their character's specific abilities as menu items
     print(f"{player_1.player_name}, Please Select a Combat Option:")
     print("0: end the game")
     print("1: basic attack")
+    print("2: fireball")
+    # these printed fields can be replaced with data and a loop
     user_input = int(input())
     
+
+    # figure out a better way to make these ability method calls
+    # store functions in a dictionary? - seems troll
     match user_input:
         case 0:
             return 0
         case 1:
             basic_attack(player_1.character, player_2.character)
             return 1
+        case 1:
+            fireball(player_1.character, player_2.character)
+            return 1
         case _:
             print("not recognized")
-            # what happens if no return?
+            return 1 # does not end execution
         
-
-    
-
 
 # ch1 deals his attack state to player 2
 # this value is reduced by player 2's defense stat
 # this needs to integrate an algorithm for damage reduction by def
 def basic_attack(ch1: Character, ch2: Character):
     # for now this will deal 5 damage regardless of stats
-    ch2.hp = ch2.hp - 10
+    ch2.hp = ch2.hp - ch1.atk
 
+
+# could be obsolete after a while
+def fireball(ch1: Character, ch2: Character):
+    ch2.hp = ch2.hp - 10
 
 # this function reads playerdata.csv and returns data necessary for instantiating Player objects
 def read_players(p1_id,p2_id):
@@ -114,6 +129,21 @@ def read_characters(ch1_id, ch2_id):
             if row[0] == str(ch1_id):
                 characters[0] = Character(row[0], row[1], row[2], row[3], row[4])
             elif row[0] == str(ch2_id):
+                characters[1] = Character(row[0], row[1], row[2], row[3], row[4])
+    print(characters)
+    return characters[0], characters[1]
+
+
+# there must be a smarter way to do this
+# this function reads characterabilitydata.csv and returns data necessary instantiating CharacterAbility objects
+def read_character_ability(mv_id):
+    characters = [1,2]
+    with open('characterabilitydata.csv', newline='') as csvfile:
+        csv_reader = csv.reader(csvfile)
+        for row in csv_reader:
+            if row[0] == str(mv_id):
+                characters[0] = CharacterAbility(row[0], row[1], row[2], row[3], row[4])
+            elif row[0] == str(mv_id):
                 characters[1] = Character(row[0], row[1], row[2], row[3], row[4])
     print(characters)
     return characters[0], characters[1]

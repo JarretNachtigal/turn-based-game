@@ -1,0 +1,14 @@
+This is a single player RPG
+- There needs to be an overworld with player inventory, settingse, menus, etc
+
+figure out how the game loop should work
+    it needs to be something that can enter into other modes ex: into the turn
+        based combat upon begin encounter
+
+figure out a better structure for player data
+
+figure out better structure for character data
+
+figure out better structure for character ability data
+
+create a class diagram or something when it becomes necessary
