@@ -1,42 +1,6 @@
 import csv
-
-
-# this class represents an ingame character capable of battle
-class Character:
-
-    def __init__(self, id, name, hp, atk, defense):
-        self.id = id
-        self.name = name
-        self.hp = int(hp)
-        self.atk = int(atk)
-        self.defense = int(defense)
-        self.character = None
-
-    # @property
-    # def hp(self):
-    #     return self.hp
-
-    # @hp.setter
-    # def hp(self, hp):
-    #     self.hp = hp
-
-# this class represents a human or AI player - not a character in game
-# if the game takes a more PvE route, human and AI players will need to be abstracted somehow
-class Player:
-
-    def __init__(self, player_id, player_name) -> None:
-        self.id = player_id
-        self.player_name = player_name
-
-
-# instances of this class represents a move that a character can learn and use
-class CharacterAbility:
-
-    def __init__(self, id, name, type, damage, cost) -> None:
-        self.id = id
-        self.name = name
-        self.damage = damage
-        self.cost = cost
+from character import Character, CharacterAbility
+from player import Player
 
 
 def main():
@@ -60,7 +24,7 @@ def game_loop(players):
     # overworld stuff? or maybe this game loop is only for combat sections
 
     # will continue combat until 0 is input to exit
-    while(turn(players[1], players[2])):
+    while(turn(players[0], players[1])):
         pass
 
     
@@ -117,7 +81,7 @@ def read_players(p1_id,p2_id):
             elif row[0] == str(p2_id):
                 players[1] = Player(row[0], row[1])
     print(players)
-    return players[0], players[1]
+    return players
 
 
 # this function reads playerdata.csv and returns data necessary for instantiating Character objects
