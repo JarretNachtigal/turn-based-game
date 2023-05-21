@@ -42,6 +42,9 @@ def main():
     # this setup method will get all the objects for the game ready MAYBE?
     # setup()
     # game loop call
+
+    # begin GameBoardtest
+    gameboard = GameBoard(players[0])
     game_loop(players)
 
 
@@ -165,5 +168,5 @@ def read_character_ability(mv_id):
     return characters[0], characters[1]
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
