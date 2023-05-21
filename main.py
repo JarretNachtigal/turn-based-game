@@ -1,6 +1,7 @@
 import csv
 from character import Character, CharacterAbility
 from player import Player
+from gameboard import GameBoard
 
 MENU_DISPLAY = "\
     _.-=-._.-=-._.-=-._.-=-._.-=-._.-=-._.-=-._.-=-._.-=-._.-=-._.-=-._.-=-._ \n \
@@ -12,7 +13,7 @@ MENU_DISPLAY = "\
 )                                                                             (\n \
 (                                                                             )\n \
 )                                                                             (\n \
-(                                                                             )\n \
+(                        Welcome To the Fucking Game                          )\n \
 )                                                                             (\n \
 (                                                                             )\n \
 )                                                                             (\n \
@@ -127,7 +128,7 @@ def read_players(p1_id, p2_id):
                 players[0] = Player(row[0], row[1])
             elif row[0] == str(p2_id):
                 players[1] = Player(row[0], row[1])
-    print(players)
+    # print(players)
     return players
 
 
@@ -143,7 +144,7 @@ def read_characters(ch1_id, ch2_id):
             elif row[0] == str(ch2_id):
                 characters[1] = Character(
                     row[0], row[1], row[2], row[3], row[4])
-    print(characters)
+    # print(characters)
     return characters[0], characters[1]
 
 

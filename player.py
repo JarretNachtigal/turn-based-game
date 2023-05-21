@@ -9,5 +9,5 @@ class Player:
         self.summons = summons  # maybe refer to a Party class?
         self.items = items  # maybe refer to an Inventory class?
         self.active_summon = None
-        self.x_pos
-        self.y_pos
+        self.x_pos = x_pos
+        self.y_pos = y_pos
