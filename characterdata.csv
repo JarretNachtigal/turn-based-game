@@ -1,4 +1,4 @@
-id,name,hp,atk,def
-1,knight,100,10,10
-2,tank,130,8,13
-3,mage,70,15,8
+id,name,hp,atk,def,speed
+1,knight,100,10,10,8
+2,tank,130,8,13,5
+3,mage,70,15,8,6

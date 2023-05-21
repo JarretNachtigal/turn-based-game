@@ -1,13 +1,13 @@
 # this class represents an ingame character capable of battle
 class Character:
 
-    def __init__(self, id, name, hp, atk, defense):
+    def __init__(self, id, name, hp, atk, defense, speed):
         self.id = id
         self.name = name
         self.hp = int(hp)
         self.atk = int(atk)
         self.defense = int(defense)
-        self.character = None
+        self.speed = speed  # used in turn priority
 
     # @property
     # def hp(self):
@@ -18,6 +18,8 @@ class Character:
     #     self.hp = hp
 
 # instances of this class represents a move that a character can learn and use
+
+
 class CharacterAbility:
 
     def __init__(self, id, name, type, damage, cost) -> None:

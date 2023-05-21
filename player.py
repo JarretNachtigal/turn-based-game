@@ -11,3 +11,7 @@ class Player:
         self.active_summon = None
         self.x_pos = x_pos
         self.y_pos = y_pos
+
+
+# this needs a way to keep track of whether it is the player or an antagonist
+# might be another place for an interface instead of inheritence
