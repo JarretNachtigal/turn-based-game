@@ -25,6 +25,7 @@ MENU_DISPLAY = "\
                             `-._.-' (_ ___) `-._.-'\n \
                                     `-._.-'"
 
+
 def main():
 
     print(MENU_DISPLAY)
@@ -48,23 +49,43 @@ def game_loop(players):
     # overworld stuff? or maybe this game loop is only for combat sections
 
     # will continue combat until 0 is input to exit
-    while(turn(players[0], players[1])):
+    while (turn(players[0], players[1])):
         pass
 
-    
+
+# def display_battle_menu(turn, player_1, player_2):
+#     if turn == 0:
+#         player = player_1
+#     else:
+#         player = player_2
+
+#     print("-----------------------------")
+#     print("Please Select Your Spell, ", player.name)
+#     for spell in player.active_summon["moveset"]:
+#         name = spell["name"]
+#         physical_damage = spell["physical_damage"]
+#         magic_damage = spell["magic_damage"]
+#         spell_pos = spell["pos"]
+#         print(f"----- {spell_pos} -----")
+#         print(f"----- {name} -----")
+#         print(f"----- physical damage: {physical_damage} -----")
+#         print(f"----- magic damage: {magic_damage} -----")
+#         print("-----------------------------")
+#         print("")
+#         print("")
+
 # this method is passed the players? characters? each turn (1 player goes, not both) and handles everything for each turn
+
+
 def turn(player_1, player_2):
     # note: --print a nice command line prompt
     # note: --later implement a little vm to read a string describing an attack and its effects
     # this way attacks can be defined as data and be customized for anything
     # note: --add robust menu options for the player - including a display of their character's specific abilities as menu items
-    print(f"{player_1.player_name}, Please Select a Combat Option:")
-    print("0: end the game")
-    print("1: basic attack")
-    print("2: fireball")
+    # display_battle_menu(turn, player_1, player_2)
+    print(f"{player_1.name}, Please Select a Combat Option:")
     # these printed fields can be replaced with data and a loop
     user_input = int(input())
-    
 
     # figure out a better way to make these ability method calls
     # store functions in a dictionary? - seems troll
@@ -79,8 +100,8 @@ def turn(player_1, player_2):
             return 1
         case _:
             print("not recognized")
-            return 1 # does not end execution
-        
+            return 1  # does not end execution
+
 
 # ch1 deals his attack state to player 2
 # this value is reduced by player 2's defense stat
@@ -95,8 +116,10 @@ def fireball(ch1: Character, ch2: Character):
     ch2.hp = ch2.hp - 10
 
 # this function reads playerdata.csv and returns data necessary for instantiating Player objects
-def read_players(p1_id,p2_id):
-    players = [0,1]
+
+
+def read_players(p1_id, p2_id):
+    players = [0, 1]
     with open('playerdata.csv', newline='') as csvfile:
         csv_reader = csv.reader(csvfile)
         for row in csv_reader:
@@ -110,14 +133,16 @@ def read_players(p1_id,p2_id):
 
 # this function reads playerdata.csv and returns data necessary for instantiating Character objects
 def read_characters(ch1_id, ch2_id):
-    characters = [1,2]
+    characters = [1, 2]
     with open('characterdata.csv', newline='') as csvfile:
         csv_reader = csv.reader(csvfile)
         for row in csv_reader:
             if row[0] == str(ch1_id):
-                characters[0] = Character(row[0], row[1], row[2], row[3], row[4])
+                characters[0] = Character(
+                    row[0], row[1], row[2], row[3], row[4])
             elif row[0] == str(ch2_id):
-                characters[1] = Character(row[0], row[1], row[2], row[3], row[4])
+                characters[1] = Character(
+                    row[0], row[1], row[2], row[3], row[4])
     print(characters)
     return characters[0], characters[1]
 
@@ -125,16 +150,19 @@ def read_characters(ch1_id, ch2_id):
 # there must be a smarter way to do this
 # this function reads characterabilitydata.csv and returns data necessary instantiating CharacterAbility objects
 def read_character_ability(mv_id):
-    characters = [1,2]
+    characters = [1, 2]
     with open('characterabilitydata.csv', newline='') as csvfile:
         csv_reader = csv.reader(csvfile)
         for row in csv_reader:
             if row[0] == str(mv_id):
-                characters[0] = CharacterAbility(row[0], row[1], row[2], row[3], row[4])
+                characters[0] = CharacterAbility(
+                    row[0], row[1], row[2], row[3], row[4])
             elif row[0] == str(mv_id):
-                characters[1] = Character(row[0], row[1], row[2], row[3], row[4])
+                characters[1] = Character(
+                    row[0], row[1], row[2], row[3], row[4])
     print(characters)
     return characters[0], characters[1]
+
 
 if __name__ == "__main__":
     main()
