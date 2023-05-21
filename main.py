@@ -2,8 +2,32 @@ import csv
 from character import Character, CharacterAbility
 from player import Player
 
+MENU_DISPLAY = "\
+    _.-=-._.-=-._.-=-._.-=-._.-=-._.-=-._.-=-._.-=-._.-=-._.-=-._.-=-._.-=-._ \n \
+.-'---      - ---     --     ---   -----   - --       ----  ----   -     ---`-.\n \
+)                                                                             (\n \
+(                                                                             )\n \
+)                                                                             (\n \
+(                                                                             )\n \
+)                                                                             (\n \
+(                                                                             )\n \
+)                                                                             (\n \
+(                                                                             )\n \
+)                                                                             (\n \
+(                                                                             )\n \
+)                                                                             (\n \
+(                                                                             )\n \
+)                                                                             (\n \
+(___       _       _       _       _       _       _       _       _       ___)\n \
+    `-._.-' (___ _) (__ _ ) (_   _) (__  _) ( __ _) (__  _) (__ _ ) `-._.-'\n \
+            `-._.-' (  ___) ( _  _) ( _ __) (_  __) (__ __) `-._.-'\n \
+                    `-._.-' (__  _) (__  _) (_ _ _) `-._.-'\n \
+                            `-._.-' (_ ___) `-._.-'\n \
+                                    `-._.-'"
 
 def main():
+
+    print(MENU_DISPLAY)
 
     # player data is filled before game loop begins
     # passed into game_loop as paramaters
