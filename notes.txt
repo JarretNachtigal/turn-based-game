@@ -12,3 +12,7 @@ figure out better structure for character data
 figure out better structure for character ability data
 
 create a class diagram or something when it becomes necessary
+
+Builder pattern?
+
+maybe GameBoard will be an observer for the objects i name, who then give the instructions
