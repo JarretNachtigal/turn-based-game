@@ -1,0 +1,48 @@
+
+
+# this interface defines a screen/board type in game
+interface GameBoard
+    class OverWorld (Singleton? cringe?)
+    class Combat
+    ShopScreen????
+
+        player = Player # as in the player input/save file
+        entities = [] # array of entities (objects in game)
+
+
+# this class keeps track of and contains methods for things that are relevent to the human player
+class Player
+
+    summons = [] # array of summons in player's party
+    inventory
+    x_pos
+    y_pos
+    speed?
+
+
+# this class keeps track od and contains methods for things that are relevent to a summoned character
+class Summon
+
+    moveset = [] # array of spells, skills
+    type # elemental
+    size? # maybe combat or effects are different based on size
+    status # poisoned? flying?
+        those are two different concepts (status condition, current status)
+    
+
+
+# this interface defines methods for abilities used by a Summon to attack
+interface AttackAbility
+
+    class Spell # use mana
+    class Skill # use (something? nothing?)
+        
+
+
+how to represent skill/spell typing in data????
+    def have it stored as a reference in instance variables
+
+how to handle user input/abstract user input
+    this allows cpu to use the same pathway
+
+Should I have variables in the interface?

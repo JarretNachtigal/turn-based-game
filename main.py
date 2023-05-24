@@ -1,5 +1,5 @@
 import csv
-from character import Character, CharacterAbility
+from summon import Summon, Skill
 from player import Player
 from gameboard import GameBoard
 
@@ -36,7 +36,7 @@ def main():
     # characters = [] # will hold instantiated characters at the highest scope MAYBE?
     # character_abilities = [] # will hold instantiated character abilities at the highest scope MAYBE?
     players = read_players(1, 2)
-    character_1, character_2 = read_characters(1, 2)
+    character_1, character_2 = read_summons(1, 2)
     players[1].character = character_1
     players[1].character = character_2
     # this setup method will get all the objects for the game ready MAYBE?
@@ -110,13 +110,13 @@ def turn(player_1, player_2):
 # ch1 deals his attack state to player 2
 # this value is reduced by player 2's defense stat
 # this needs to integrate an algorithm for damage reduction by def
-def basic_attack(ch1: Character, ch2: Character):
+def basic_attack(ch1: Summon, ch2: Summon):
     # for now this will deal 5 damage regardless of stats
     ch2.hp = ch2.hp - ch1.atk
 
 
 # could be obsolete after a while
-def fireball(ch1: Character, ch2: Character):
+def fireball(ch1: Summon, ch2: Summon):
     ch2.hp = ch2.hp - 10
 
 # this function reads playerdata.csv and returns data necessary for instantiating Player objects
@@ -135,37 +135,37 @@ def read_players(p1_id, p2_id):
     return players
 
 
-# this function reads playerdata.csv and returns data necessary for instantiating Character objects
-def read_characters(ch1_id, ch2_id):
-    characters = [1, 2]
+# this function reads playerdata.csv and returns data necessary for instantiating Summon objects
+def read_summons(ch1_id, ch2_id):
+    summons = [1, 2]
     with open('characterdata.csv', newline='') as csvfile:
         csv_reader = csv.reader(csvfile)
         for row in csv_reader:
             if row[0] == str(ch1_id):
-                characters[0] = Character(
+                summons[0] = Summon(
                     row[0], row[1], row[2], row[3], row[4])
             elif row[0] == str(ch2_id):
-                characters[1] = Character(
+                summons[1] = Summon(
                     row[0], row[1], row[2], row[3], row[4])
     # print(characters)
-    return characters[0], characters[1]
+    return summons[0], summons[1]
 
 
 # there must be a smarter way to do this
 # this function reads characterabilitydata.csv and returns data necessary instantiating CharacterAbility objects
 def read_character_ability(mv_id):
-    characters = [1, 2]
+    summons = [1, 2]
     with open('characterabilitydata.csv', newline='') as csvfile:
         csv_reader = csv.reader(csvfile)
         for row in csv_reader:
             if row[0] == str(mv_id):
-                characters[0] = CharacterAbility(
+                summons[0] = Skill(
                     row[0], row[1], row[2], row[3], row[4])
             elif row[0] == str(mv_id):
-                characters[1] = Character(
+                summons[1] = Summon(
                     row[0], row[1], row[2], row[3], row[4])
-    print(characters)
-    return characters[0], characters[1]
+    print(summons)
+    return summons[0], summons[1]
 
 
 # if __name__ == "__main__":
